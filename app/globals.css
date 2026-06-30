@@ -1,0 +1,40 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --black: #0a0a0a;
+  --cream: #f5f0e8;
+  --gold: #c9a96e;
+  --gold-light: #e8d5a3;
+  --white: #fefefe;
+  --mid: #1a1a1a;
+  --text-light: #8a8070;
+  --font-serif: 'Cormorant Garamond', Georgia, serif;
+  --font-sans: 'Jost', sans-serif;
+}
+
+html { scroll-behavior: smooth; }
+body { background: var(--cream); color: var(--black); font-weight: 300; }
+
+.btn-primary{background:var(--gold);color:var(--black);padding:.85rem 2.2rem;font-size:.75rem;letter-spacing:.2em;text-transform:uppercase;font-weight:500;transition:all .3s;border:1px solid var(--gold);display:inline-block;text-align:center;cursor:pointer}
+.btn-primary:hover{background:transparent;color:var(--gold)}
+.btn-primary:disabled{opacity:.5;cursor:not-allowed}
+
+.btn-outline{background:transparent;color:var(--black);padding:.85rem 2.2rem;font-size:.75rem;letter-spacing:.2em;text-transform:uppercase;font-weight:400;border:1px solid rgba(10,10,10,.3);transition:all .3s;display:inline-block;text-align:center;cursor:pointer}
+.btn-outline:hover{border-color:var(--gold);color:var(--gold)}
+
+.btn-dark{background:var(--black);color:var(--cream);padding:.85rem 2.2rem;font-size:.75rem;letter-spacing:.2em;text-transform:uppercase;font-weight:500;transition:all .3s;border:1px solid var(--black);display:inline-block;text-align:center;cursor:pointer}
+.btn-dark:hover{background:transparent;color:var(--black)}
+
+.section-eyebrow{font-size:.65rem;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);margin-bottom:1rem}
+.section-title{font-family:var(--font-serif);font-weight:300;line-height:1.15}
+.divider{width:40px;height:1px;background:var(--gold);margin:1.5rem 0}
+
+input,select,textarea{background:var(--white);border:1px solid rgba(10,10,10,.15);color:var(--black);padding:.75rem 1rem;font-family:var(--font-sans);font-size:.85rem;width:100%;transition:border-color .2s}
+input:focus,select:focus,textarea:focus{outline:none;border-color:var(--gold)}
+label{font-size:.65rem;letter-spacing:.15em;text-transform:uppercase;color:var(--text-light);display:block;margin-bottom:.4rem}
+
+::-webkit-scrollbar{width:8px}
+::-webkit-scrollbar-track{background:var(--cream)}
+::-webkit-scrollbar-thumb{background:var(--gold)}
