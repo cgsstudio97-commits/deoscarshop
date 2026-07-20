@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import { Product } from "@/types";
-import { useCart } from "@/context/CartContext";
+import { useCart } from "@/lib/CartContext";
 import { Minus, Plus, Check } from "lucide-react";
 
 export default function ProductDetailClient({ product }: { product: Product }) {
