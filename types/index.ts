@@ -2,9 +2,7 @@ export type ProductCategory =
   | "clip-in"
   | "tape"
   | "invisible-weft"
-  | "nano"
-  | "tools"
-  | "accessories";
+  | "nano";
 
 export interface Product {
   id: string;
@@ -12,9 +10,11 @@ export interface Product {
   name: string;
   category: ProductCategory;
   categoryLabel: string;
+  badge?: string;
   description: string;
   longDescription: string;
-  price: number; // AUD
+  price: number; // AUD - starting price (lowest length)
+  lengthPrices: Record<string, number>; // AUD price per length option
   image: string;
   lengths: string[];
   colours: string[];
