@@ -16,7 +16,7 @@ export default function SiteChrome({ children }: { children: React.ReactNode }) 
   return (
     <>
       <Navbar />
-      <main className="flex-1 pt-[64px]">{children}</main>
+      <main className="flex-1 pt-[60px] sm:pt-[72px]">{children}</main>
       <Footer />
       <CartDrawer />
     </>
