@@ -34,11 +34,13 @@ interface ConnectRedirectParams {
  * checkout. The customer's browser POSTs these fields directly to
  * FISERV_CONNECT_URL — card data never touches our server.
  *
- * Signature = base64(HMAC-SHA1(storeId + checkoutId + chargetotal +
- * currency + sharedSecret)) per Fiserv Connect spec. Field names
- * below follow the standard Connect integration guide; confirm exact
- * field names against the guide for your account if Fiserv support
- * provided custom ones.
+ * Signature = hex(HMAC-SHA256(storeId + txndatetime + chargetotal +
+ * currency, sharedSecret)) — an HMAC keyed with the shared secret
+ * (not a plain hash of the concatenated string, which would let
+ * anyone forge a signature without the secret). Field names below
+ * follow the standard Connect integration guide; confirm exact field
+ * names AND hash scheme against the guide for your account — some
+ * Fiserv Connect accounts use SHA-1 or a different field order.
  */
 export function buildConnectRedirectFields(params: ConnectRedirectParams) {
   const storeId = getEnv("FISERV_STORE_ID");
@@ -51,9 +53,12 @@ export function buildConnectRedirectFields(params: ConnectRedirectParams) {
   const chargetotal = params.amount.toFixed(2);
   const checkoutId = params.orderId;
 
-  const signatureSource = `${storeId}${txndatetime}${chargetotal}${currency}${sharedSecret}`;
+  const signatureSource = `${storeId}${txndatetime}${chargetotal}${currency}`;
   const hash_algorithm = "SHA256";
-  const hashExtended = crypto.createHash("sha256").update(signatureSource).digest("hex");
+  const hashExtended = crypto
+    .createHmac("sha256", sharedSecret)
+    .update(signatureSource)
+    .digest("hex");
 
   return {
     action: getEnv("FISERV_CONNECT_URL"),
@@ -84,7 +89,7 @@ export function verifyConnectResponse(fields: ConnectResponseFields): boolean {
   const sharedSecret = getEnv("FISERV_CONNECT_SHARED_SECRET");
   const { storename, txndatetime, chargetotal, currency, response_hash } = fields;
   if (!response_hash) return false;
-  const source = `${storename}${txndatetime}${chargetotal}${currency}${sharedSecret}`;
-  const expected = crypto.createHash("sha256").update(source).digest("hex");
+  const source = `${storename}${txndatetime}${chargetotal}${currency}`;
+  const expected = crypto.createHmac("sha256", sharedSecret).update(source).digest("hex");
   return expected === response_hash;
 }
