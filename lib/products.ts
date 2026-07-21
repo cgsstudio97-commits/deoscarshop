@@ -13,10 +13,10 @@ export const PRODUCTS: Product[] = [
     description: "100% Double Drawn Remy human hair clip-ins for instant length and volume.",
     longDescription:
       "Our Classic Clip-In Hair Extensions are crafted from 100% Double Drawn Remy Human Hair, designed to blend seamlessly with your natural hair. Each weft features silicone-lined clips for a secure, damage-free hold. Reusable for 6–12 months with proper care.",
-    price: 230,
-    lengthPrices: { "40cm": 230, "45cm": 250, "50cm": 270, "55cm": 290, "60cm": 310 },
+    price: 280,
+    lengthPrices: { "45cm": 280, "50cm": 320, "55cm": 350 },
     image: "/products/clip-in-premium.webp",
-    lengths: ["40cm", "45cm", "50cm", "55cm", "60cm"],
+    lengths: ["45cm", "50cm", "55cm"],
     colours: ["Natural Black", "Chocolate Brown", "Honey Blonde", "Platinum Blonde", "Balayage"],
   },
   {
@@ -29,10 +29,10 @@ export const PRODUCTS: Product[] = [
     description: "Ultra-thin, seamless tape wefts for an undetectable finish.",
     longDescription:
       "Our Premium Tape-In Hair Extensions are made from 100% Double Drawn Remy Human Hair and feature medical-grade adhesive tapes for a comfortable, lightweight and natural-looking finish. Reusable with professional maintenance.",
-    price: 240,
-    lengthPrices: { "40cm": 240, "45cm": 260, "50cm": 280, "55cm": 300, "60cm": 320 },
+    price: 280,
+    lengthPrices: { "45cm": 280, "50cm": 320, "55cm": 350 },
     image: "/products/tape-in-premium.webp",
-    lengths: ["40cm", "45cm", "50cm", "55cm", "60cm"],
+    lengths: ["45cm", "50cm", "55cm"],
     colours: ["Natural Black", "Chocolate Brown", "Honey Blonde", "Platinum Blonde", "Balayage"],
   },
   {
@@ -45,10 +45,10 @@ export const PRODUCTS: Product[] = [
     description: "Hand-tied wefts with no bulk, for a flawless, flat install.",
     longDescription:
       "Our Premium Invisible Weft Hair Extensions are made from 100% Double Drawn Remy Human Hair, designed to create maximum volume with an ultra-discreet finish. Ideal for professional salon installations and long-lasting wear.",
-    price: 270,
-    lengthPrices: { "45cm": 270, "50cm": 290, "55cm": 310, "60cm": 330, "65cm": 350 },
+    price: 280,
+    lengthPrices: { "45cm": 280, "50cm": 320, "55cm": 350 },
     image: "/products/invisible-weft-premium.webp",
-    lengths: ["45cm", "50cm", "55cm", "60cm", "65cm"],
+    lengths: ["45cm", "50cm", "55cm"],
     colours: ["Natural Black", "Chocolate Brown", "Honey Blonde", "Platinum Blonde", "Balayage"],
   },
   {
@@ -61,10 +61,10 @@ export const PRODUCTS: Product[] = [
     description: "Micro nano rings for the most discreet, long-lasting wear.",
     longDescription:
       "Our Premium Nano Tip Hair Extensions are crafted from 100% Double Drawn Remy Human Hair, offering a lightweight, discreet and reusable application using nano rings. Perfect for achieving seamless length and volume while protecting your natural hair.",
-    price: 240,
-    lengthPrices: { "40cm": 240, "45cm": 260, "50cm": 280, "55cm": 300, "60cm": 320 },
+    price: 280,
+    lengthPrices: { "45cm": 280, "50cm": 320, "55cm": 350 },
     image: "/products/nano-tip-premium.webp",
-    lengths: ["40cm", "45cm", "50cm", "55cm", "60cm"],
+    lengths: ["45cm", "50cm", "55cm"],
     colours: ["Natural Black", "Chocolate Brown", "Honey Blonde", "Platinum Blonde"],
   },
 ];
