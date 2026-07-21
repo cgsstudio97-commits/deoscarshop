@@ -29,21 +29,21 @@ export default function Navbar() {
           </li>
         </ul>
 
-        <div className="absolute right-4 sm:right-[6vw] flex items-center gap-4 sm:gap-5">
+        <div className="absolute right-2 sm:right-[6vw] flex items-center gap-1 sm:gap-3">
           <button
             onClick={openCart}
-            className="relative text-cream/85 hover:text-gold transition-colors duration-500"
+            className="relative text-cream/85 hover:text-gold transition-colors duration-500 w-11 h-11 flex items-center justify-center"
             aria-label="Open cart"
           >
             <ShoppingBag size={17} strokeWidth={1.5} />
             {count > 0 && (
-              <span className="absolute -top-2 -right-2 bg-gold text-black text-[9px] font-medium w-4 h-4 rounded-full flex items-center justify-center">
+              <span className="absolute top-1 right-1 bg-gold text-black text-[9px] font-medium w-4 h-4 rounded-full flex items-center justify-center">
                 {count}
               </span>
             )}
           </button>
           <button
-            className="md:hidden text-cream/85"
+            className="md:hidden text-cream/85 w-11 h-11 flex items-center justify-center"
             onClick={() => setMobileOpen((o) => !o)}
             aria-label="Toggle menu"
           >
