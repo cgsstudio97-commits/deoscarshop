@@ -93,11 +93,22 @@ export default function Home() {
       {/* HERO */}
       <section className="relative h-[94vh] sm:h-screen flex items-center justify-center bg-black overflow-hidden">
         <div className="absolute inset-0">
-          <BackgroundVideo
-            src="/videos/hero-1.mp4"
-            objectPosition="50% 38%"
-            className="w-full h-full object-cover"
-          />
+          <div className="hidden sm:block w-full h-full">
+            <BackgroundVideo
+              src="/videos/hero-1.mp4"
+              objectPosition="50% 38%"
+              className="w-full h-full object-cover"
+            />
+          </div>
+          <div className="sm:hidden w-full h-full relative">
+            <Image
+              src="/branding/logo-mobile.png"
+              alt="Dé.Oscar Hair Extensions"
+              fill
+              priority
+              className="object-cover"
+            />
+          </div>
           {/* soft edge vignette — hides any corner watermark without over-cropping */}
           <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-transparent to-black/75" />
           <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-black to-transparent" />
