@@ -38,7 +38,6 @@ export default function BackgroundVideo({
       muted
       loop
       playsInline
-      // @ts-expect-error legacy iOS attribute, not in React's video typings
       webkit-playsinline="true"
       preload="auto"
       disablePictureInPicture
