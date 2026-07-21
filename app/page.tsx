@@ -3,6 +3,7 @@ import { PRODUCTS } from "@/lib/products";
 import ProductCard from "@/components/ProductCard";
 import Reveal from "@/components/Reveal";
 import AccessoriesCarousel from "@/components/AccessoriesCarousel";
+import BackgroundVideo from "@/components/BackgroundVideo";
 
 const WHY_ITEMS = [
   {
@@ -92,15 +93,10 @@ export default function Home() {
       {/* HERO */}
       <section className="relative h-[94vh] sm:h-screen flex items-center justify-center bg-black overflow-hidden">
         <div className="absolute inset-0">
-          <video
+          <BackgroundVideo
             src="/videos/hero-1.mp4"
-            autoPlay
-            muted
-            loop
-            playsInline
-            preload="auto"
+            objectPosition="50% 38%"
             className="w-full h-full object-cover"
-            style={{ objectPosition: "50% 38%", transform: "scale(1.03)" }}
           />
           {/* soft edge vignette — hides any corner watermark without over-cropping */}
           <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-transparent to-black/75" />
@@ -161,16 +157,11 @@ export default function Home() {
       {/* EDITORIAL VIDEO SECTION */}
       <section className="relative min-h-[75vh] sm:min-h-[92vh] flex items-center justify-center bg-black overflow-hidden">
         <div className="absolute inset-0">
-          <video
+          <BackgroundVideo
             src="/videos/hero-2.mp4"
-            autoPlay
-            muted
-            loop
-            playsInline
-            preload="none"
             poster="/products/img-06-634fe352.jpg"
+            objectPosition="50% 45%"
             className="w-full h-full object-cover"
-            style={{ objectPosition: "50% 45%", transform: "scale(1.03)" }}
           />
           <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-transparent to-black/75" />
           <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-black to-transparent" />
