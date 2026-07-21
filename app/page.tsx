@@ -121,6 +121,15 @@ export default function Home() {
               Shop Extensions
             </a>
           </div>
+          <a
+            href="https://www.instagram.com/de.oscarhairdresser/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-[0.68rem] tracking-[0.15em] uppercase text-white/50 hover:text-gold-light transition-colors mt-6 sm:mt-8 fade-up"
+            style={{ animationDelay: "0.44s" }}
+          >
+            Trusted by 2,500+ on Instagram
+          </a>
         </div>
       </section>
 

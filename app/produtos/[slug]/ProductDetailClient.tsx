@@ -12,6 +12,7 @@ export default function ProductDetailClient({ product }: { product: Product }) {
   const [quantity, setQuantity] = useState(1);
   const [added, setAdded] = useState(false);
   const { addItem } = useCart();
+  const currentPrice = product.lengthPrices[length] ?? product.price;
 
   function handleAddToCart() {
     addItem({
@@ -19,7 +20,7 @@ export default function ProductDetailClient({ product }: { product: Product }) {
       slug: product.slug,
       name: product.name,
       image: product.image,
-      price: product.price,
+      price: currentPrice,
       category: product.categoryLabel,
       length,
       colour,
@@ -30,10 +31,10 @@ export default function ProductDetailClient({ product }: { product: Product }) {
   }
 
   return (
-    <div className="bg-cream px-[6vw] py-16">
-      <div className="grid md:grid-cols-2 gap-12 lg:gap-20 max-w-6xl mx-auto">
+    <div className="bg-black px-[6vw] sm:px-[8vw] py-12 sm:py-16">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 lg:gap-16 max-w-6xl mx-auto">
         {/* Image */}
-        <div className="relative aspect-[3/4] bg-mid overflow-hidden">
+        <div className="relative aspect-[3/4] bg-mid overflow-hidden order-2 md:order-1">
           <Image
             src={product.image}
             alt={product.name}
@@ -45,17 +46,17 @@ export default function ProductDetailClient({ product }: { product: Product }) {
         </div>
 
         {/* Details */}
-        <div>
-          <p className="text-[0.65rem] tracking-widest uppercase text-gold mb-3">
+        <div className="order-1 md:order-2">
+          <p className="text-[0.65rem] tracking-widest uppercase text-gold mb-2 sm:mb-3">
             {product.categoryLabel}
           </p>
-          <h1 className="font-serif text-[clamp(2rem,4vw,2.8rem)] leading-tight mb-4">
+          <h1 className="font-serif text-cream text-[clamp(1.6rem,4vw,2.8rem)] leading-tight mb-3 sm:mb-4">
             {product.name}
           </h1>
-          <p className="font-serif text-2xl text-gold mb-6">
-            ${product.price.toFixed(2)} AUD
+          <p className="font-serif text-xl sm:text-2xl text-gold mb-4 sm:mb-6">
+            ${currentPrice.toFixed(2)} AUD
           </p>
-          <p className="text-text-light leading-relaxed mb-8">
+          <p className="text-cream/55 leading-relaxed mb-6 sm:mb-8 text-[0.95rem]">
             {product.longDescription}
           </p>
 
@@ -69,10 +70,10 @@ export default function ProductDetailClient({ product }: { product: Product }) {
                 <button
                   key={l}
                   onClick={() => setLength(l)}
-                  className={`text-xs px-4 py-2 border transition-colors ${
+                  className={`text-xs px-3 sm:px-4 py-2 border transition-colors ${
                     length === l
-                      ? "bg-black text-cream border-black"
-                      : "border-black/20 hover:border-gold"
+                      ? "bg-gold text-black border-gold"
+                      : "border-cream/20 text-cream/70 hover:border-gold"
                   }`}
                 >
                   {l}
@@ -89,10 +90,10 @@ export default function ProductDetailClient({ product }: { product: Product }) {
                 <button
                   key={c}
                   onClick={() => setColour(c)}
-                  className={`text-xs px-4 py-2 border transition-colors ${
+                  className={`text-xs px-3 sm:px-4 py-2 border transition-colors ${
                     colour === c
-                      ? "bg-black text-cream border-black"
-                      : "border-black/20 hover:border-gold"
+                      ? "bg-gold text-black border-gold"
+                      : "border-cream/20 text-cream/70 hover:border-gold"
                   }`}
                 >
                   {c}
@@ -104,7 +105,7 @@ export default function ProductDetailClient({ product }: { product: Product }) {
           {/* Quantity */}
           <div className="mb-8">
             <label>Quantity</label>
-            <div className="flex items-center border border-black/20 w-fit">
+            <div className="flex items-center border border-cream/20 w-fit">
               <button
                 className="px-3 py-2"
                 onClick={() => setQuantity((q) => Math.max(1, q - 1))}
@@ -112,7 +113,7 @@ export default function ProductDetailClient({ product }: { product: Product }) {
               >
                 <Minus size={14} />
               </button>
-              <span className="px-4 text-sm">{quantity}</span>
+              <span className="px-4 text-sm text-cream">{quantity}</span>
               <button
                 className="px-3 py-2"
                 onClick={() => setQuantity((q) => q + 1)}
@@ -125,7 +126,7 @@ export default function ProductDetailClient({ product }: { product: Product }) {
 
           <button
             onClick={handleAddToCart}
-            className="btn-primary w-full flex items-center justify-center gap-2"
+            className="btn-primary w-full sm:w-auto text-center flex items-center justify-center gap-2"
           >
             {added ? (
               <>
@@ -135,6 +136,12 @@ export default function ProductDetailClient({ product }: { product: Product }) {
               "Add to Cart"
             )}
           </button>
+
+          <div className="flex flex-wrap gap-x-5 gap-y-2 mt-6 text-[0.72rem] text-cream/45">
+            <span>Secure Checkout</span>
+            <span>Sydney-Based Salon</span>
+            <span>Personal Colour Matching Support</span>
+          </div>
         </div>
       </div>
     </div>

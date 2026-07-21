@@ -53,14 +53,25 @@ async function handle(req: NextRequest) {
       fiserv_response: fields,
     })
     .eq("id", orderId)
-    .select()
+    .select("*, order_items(*)")
     .single();
 
   if (approved && order) {
-    sendOrderConfirmationToCustomer({ ...order, items: [] } as OrderRecord).catch((e) =>
+    const { order_items, ...orderFields } = order;
+    const items = (order_items || []).map((r: Record<string, unknown>) => ({
+      product_id: r.product_id,
+      product_name: r.product_name,
+      product_type: r.product_type,
+      length: r.length,
+      colour: r.colour,
+      quantity: r.quantity,
+      unit_price: r.unit_price,
+      line_total: r.line_total,
+    }));
+    sendOrderConfirmationToCustomer({ ...orderFields, items } as OrderRecord).catch((e) =>
       console.error("Customer email failed:", e)
     );
-    sendOrderNotificationToOwner({ ...order, items: [] } as OrderRecord).catch((e) =>
+    sendOrderNotificationToOwner({ ...orderFields, items } as OrderRecord).catch((e) =>
       console.error("Owner email failed:", e)
     );
     return NextResponse.redirect(`${origin}/sucesso?orderId=${orderId}`);

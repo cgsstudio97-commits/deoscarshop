@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState, useCallback } from "react";
+import { Fragment, useEffect, useState, useCallback } from "react";
 import { Search, RefreshCw } from "lucide-react";
 
 interface OrderItem {
@@ -104,9 +104,9 @@ export default function AdminDashboard() {
   };
 
   return (
-    <div>
-      <div className="flex items-center justify-between mb-8">
-        <h1 className="font-serif text-3xl">Orders</h1>
+    <div className="px-[6vw] sm:px-[8vw] py-12 sm:py-16">
+      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-6 sm:mb-8 gap-4">
+        <h1 className="font-serif text-2xl sm:text-3xl">Orders</h1>
         <button
           onClick={() => fetchOrders(search)}
           className="flex items-center gap-2 text-xs uppercase tracking-widest text-text-light hover:text-gold"
@@ -116,7 +116,7 @@ export default function AdminDashboard() {
       </div>
 
       {/* Stats */}
-      <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-8">
+      <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 mb-8">
         <StatCard label="Total Orders" value={stats.total} />
         <StatCard label="Pending Payment" value={stats.pending} />
         <StatCard label="Paid" value={stats.paid} />
@@ -124,7 +124,7 @@ export default function AdminDashboard() {
       </div>
 
       {/* Search + Filters */}
-      <div className="flex flex-wrap gap-3 mb-6">
+      <div className="flex flex-col sm:flex-row flex-wrap gap-3 mb-6">
         <div className="relative max-w-md flex-1 min-w-[220px]">
           <Search
             size={16}
@@ -179,8 +179,8 @@ export default function AdminDashboard() {
             </thead>
             <tbody>
               {filteredOrders.map((order) => (
-                <>
-                  <tr key={order.id} className="border-b border-black/5 hover:bg-cream/50">
+                <Fragment key={order.id}>
+                  <tr className="border-b border-black/5 hover:bg-cream/50">
                     <td className="px-4 py-3 whitespace-nowrap text-text-light">
                       {new Date(order.created_at).toLocaleDateString("en-AU", {
                         day: "2-digit",
@@ -278,7 +278,7 @@ export default function AdminDashboard() {
                       </td>
                     </tr>
                   )}
-                </>
+                </Fragment>
               ))}
             </tbody>
           </table>

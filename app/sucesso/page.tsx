@@ -31,13 +31,8 @@ function SuccessContent() {
         <Link href="/produtos" className="btn-outline">
           Continue Shopping
         </Link>
-        <a
-          href="https://wa.me/61000000000"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="btn-primary"
-        >
-          Chat with Us on WhatsApp
+        <a href="tel:0450670239" className="btn-primary">
+          Contact Us
         </a>
       </div>
     </div>

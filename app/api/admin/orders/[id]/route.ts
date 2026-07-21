@@ -2,55 +2,38 @@ import { NextRequest, NextResponse } from "next/server";
 import { createServerSupabase } from "@/lib/supabase/server";
 import { createAdminSupabase } from "@/lib/supabase/admin";
 
-async function requireAdmin() {
-  const supabase = await createServerSupabase();
-  const { data } = await supabase.auth.getUser();
-  return data.user;
-}
-
-const VALID_ORDER_STATUSES = ["new", "processing", "shipped", "completed"];
-const VALID_PAYMENT_STATUSES = ["pending", "paid", "failed"];
+const ALLOWED_PAYMENT = ["pending", "paid", "failed"];
+const ALLOWED_ORDER = ["new", "processing", "shipped", "completed"];
 
 export async function PATCH(
   req: NextRequest,
   { params }: { params: Promise<{ id: string }> }
 ) {
-  const user = await requireAdmin();
-  if (!user) {
+  const supabase = await createServerSupabase();
+  const { data: auth } = await supabase.auth.getUser();
+  if (!auth.user) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
   const { id } = await params;
-  const body = await req.json();
-  const { order_status, payment_status } = body as {
-    order_status?: string;
-    payment_status?: string;
-  };
+  const body = await req.json().catch(() => ({}));
+  const update: Record<string, string> = {};
 
-  const updates: Record<string, string> = {};
-
-  if (order_status) {
-    if (!VALID_ORDER_STATUSES.includes(order_status)) {
-      return NextResponse.json({ error: "Invalid order_status" }, { status: 400 });
-    }
-    updates.order_status = order_status;
+  if (body.payment_status && ALLOWED_PAYMENT.includes(body.payment_status)) {
+    update.payment_status = body.payment_status;
+  }
+  if (body.order_status && ALLOWED_ORDER.includes(body.order_status)) {
+    update.order_status = body.order_status;
   }
 
-  if (payment_status) {
-    if (!VALID_PAYMENT_STATUSES.includes(payment_status)) {
-      return NextResponse.json({ error: "Invalid payment_status" }, { status: 400 });
-    }
-    updates.payment_status = payment_status;
-  }
-
-  if (Object.keys(updates).length === 0) {
-    return NextResponse.json({ error: "No valid fields to update" }, { status: 400 });
+  if (Object.keys(update).length === 0) {
+    return NextResponse.json({ error: "No valid fields to update." }, { status: 400 });
   }
 
   const admin = createAdminSupabase();
   const { data, error } = await admin
     .from("orders")
-    .update(updates)
+    .update(update)
     .eq("id", id)
     .select()
     .single();

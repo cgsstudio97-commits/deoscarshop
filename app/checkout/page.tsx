@@ -109,8 +109,8 @@ export default function CheckoutPage() {
 
   if (items.length === 0) {
     return (
-      <div className="px-[8vw] py-28 text-center">
-        <h1 className="section-title text-3xl mb-4">Your Cart is Empty</h1>
+      <div className="bg-black px-[6vw] sm:px-[8vw] py-20 sm:py-28 text-center">
+        <h1 className="section-title text-cream text-2xl sm:text-3xl mb-4">Your Cart is Empty</h1>
         <Link href="/produtos" className="btn-primary">
           Shop Now
         </Link>
@@ -119,11 +119,11 @@ export default function CheckoutPage() {
   }
 
   return (
-    <div className="px-[6vw] md:px-[8vw] py-16 max-w-5xl mx-auto grid md:grid-cols-[1.3fr_1fr] gap-12">
+    <div className="bg-black px-[6vw] sm:px-[8vw] py-12 sm:py-16 max-w-5xl mx-auto pt-24 grid grid-cols-1 md:grid-cols-[1.3fr_1fr] gap-8 md:gap-12">
       <div>
-        <h1 className="section-title text-3xl mb-8">Checkout</h1>
+        <h1 className="section-title text-cream text-2xl sm:text-3xl mb-6 sm:mb-8">Checkout</h1>
 
-        <form onSubmit={handleSubmit} className="flex flex-col gap-5">
+        <form onSubmit={handleSubmit} className="flex flex-col gap-4 sm:gap-5">
           <div>
             <label htmlFor="fullName">Full Name *</label>
             <input
@@ -134,7 +134,7 @@ export default function CheckoutPage() {
             />
           </div>
 
-          <div className="grid sm:grid-cols-2 gap-5">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5">
             <div>
               <label htmlFor="email">Email *</label>
               <input
@@ -167,8 +167,8 @@ export default function CheckoutPage() {
             />
           </div>
 
-          <div className="grid sm:grid-cols-3 gap-5">
-            <div>
+          <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 sm:gap-5">
+            <div className="col-span-2 sm:col-span-1">
               <label htmlFor="suburb">Suburb / City *</label>
               <input
                 id="suburb"
@@ -229,7 +229,7 @@ export default function CheckoutPage() {
             </p>
           )}
 
-          <p className="text-[0.7rem] text-text-light leading-relaxed">
+          <p className="text-[0.7rem] text-cream/50 leading-relaxed">
             Payment is processed securely. Your order will be created and you
             will be redirected to complete payment. Card details are never
             stored on our servers.
@@ -238,23 +238,29 @@ export default function CheckoutPage() {
           <button type="submit" disabled={loading} className="btn-primary mt-2">
             {loading ? "Processing..." : "Place Order & Pay"}
           </button>
+
+          <div className="flex flex-wrap gap-x-5 gap-y-2 text-[0.68rem] text-cream/40 justify-center sm:justify-start">
+            <span>Secure Payment</span>
+            <span>Cards Never Stored</span>
+            <span>Sydney-Based Salon</span>
+          </div>
         </form>
       </div>
 
       {/* Order Summary */}
-      <div className="bg-mid text-cream p-6 md:p-8 h-fit">
-        <h2 className="font-serif text-xl mb-6">Order Summary</h2>
-        <ul className="flex flex-col gap-4 mb-6">
+      <div className="bg-mid text-cream p-5 sm:p-6 md:p-8 h-fit sticky top-24">
+        <h2 className="font-serif text-lg sm:text-xl mb-5 sm:mb-6">Order Summary</h2>
+        <ul className="flex flex-col gap-3 sm:gap-4 mb-5 sm:mb-6">
           {items.map((item, idx) => (
-            <li key={idx} className="flex justify-between text-sm gap-3">
-              <span className="text-cream/70">
+            <li key={idx} className="flex justify-between text-xs sm:text-sm gap-2">
+              <span className="text-cream/70 flex-1">
                 {item.name} ({item.length}, {item.colour}) × {item.quantity}
               </span>
-              <span>${(item.price * item.quantity).toFixed(2)}</span>
+              <span className="flex-shrink-0">${(item.price * item.quantity).toFixed(2)}</span>
             </li>
           ))}
         </ul>
-        <div className="border-t border-gold/20 pt-4 flex justify-between font-serif text-lg">
+        <div className="border-t border-gold/20 pt-4 flex justify-between font-serif text-base sm:text-lg">
           <span>Total</span>
           <span className="text-gold-light">${total.toFixed(2)} AUD</span>
         </div>
